@@ -1,0 +1,133 @@
+/* queries */
+
+// products //
+
+query {
+    getAllProducts {
+        id
+        name
+        price
+        stock
+        description
+        image
+    }
+}
+
+query {
+    getProductById(id:"62cc9b04f212fc2f674f0c7e"){
+      name
+      price
+      image
+      stock
+      description
+    }
+}
+
+// carts //
+
+query {
+    getAllCarts {
+    _id
+    name
+      products{
+        _id
+      }
+    }
+}
+
+query {
+    getCartById(id:"62c4bea28435dbcacac33181"){
+      name
+    }
+}
+
+query {
+    getCartProducts(id:"62c4bea28435dbcacac33181"){
+	_id
+    }
+}
+
+/* mutations */
+
+// products //
+
+mutation {
+    createProduct(
+        name: "Producto GraphQL",
+        price: 555,
+        stock: 3,
+        description: "Descripcion del Producto GraphQL, generado con graphql - mutations",
+        image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    ){
+    name
+    price
+    stock
+    description
+    image
+  }
+}
+
+mutation {
+        updateProduct(
+            id: "62c4bdd08435dbcacac3316a",
+            name: "black shoes + update mutation",
+            price: 777,
+            stock: 55,
+            description: "Producto modificado a través de update mutation",
+            image: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+        ){
+        name
+        price
+        stock
+        description
+        image
+    }
+}
+
+mutation {
+    deleteProduct(id: "62c76b06180773b45c1af9f9"){
+        name
+        price
+        stock
+        description
+        image
+    }
+}
+
+// carts //
+
+mutation {
+    createCart(name: "Last Cart GraphQL mutations!") {
+    name
+  }
+}
+
+mutation {
+    addProductToCart(id: "62eb2e2c44d40521f47b4dc3", productId: "62c4bdd08435dbcacac3316a") {
+    _id
+    name
+    products {
+      _id
+    }
+  }
+}
+
+mutation {
+    removeProductFromCart(id: "62eb2e2c44d40521f47b4dc3", productId: "62c4bdd08435dbcacac3316a") {
+    _id
+    name
+    products {
+      _id
+    }
+  }
+}
+
+mutation {
+    deleteCart(id: "62eb0e4e3401e2693d461b86") {
+    _id
+    name
+    products {
+      _id
+    }
+  }
+}
